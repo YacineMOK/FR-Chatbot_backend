@@ -24,13 +24,17 @@ class Chatbot(APIView):
         # Select an answer 
         answer = selectAnswer(request, answers)
 
+        print('\n', request, '\n')
+
+
+
         # Save the QA in dict session
         saveQAInSession(request, question, answer)
         print("Les questions de l'utilisateur: ", request.session['questions'])
         print("Les réponses du bot: ", request.session['answers'])
 
         # Return the prediction
-        response_dict = {"Bot: ": answer.capitalize()}
+        response_dict = {"Bot": answer.capitalize()}
         return Response(response_dict, status=200)
 
 def saveQAInSession(request, question, answer):

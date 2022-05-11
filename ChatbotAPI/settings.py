@@ -33,8 +33,88 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+####################"
+# Allow headers
+CORS_ALLOW_HEADERS = (
+    'XMLHttpRequest',
+    'X_FILENAME',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'Pragma',
+)
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1/",
+]
+
+# Allow methodes
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+    'VIEW',
+)
+
+# Allow to send cookie
+CORS_ALLOWED_ORIGINS = ["http://127.0.0.1/",
+                        "https://localhost/",
+                        "https://127.0.0.1/",
+                        "http://localhost/"]
+CORS_ALLOW_CREDENTIALS = True
+CORS_REPLACE_HTTPS_REFERER = True
+
+# To be save, use CORS_ORIGIN_ALLOW_ALL = True only when testing. 
+# Normally please use the whitelist directly.
+
+CORS_ORIGIN_ALLOW_ALL = True 
+CORS_ORIGIN_WHITELIST = [
+    "http://127.0.0.1",
+]
+
+# INSTALLED_APPS = [
+#     'django.contrib.admin',
+#     'django.contrib.auth', #Core authentication framework and its default models.
+#     'django.contrib.contenttypes',#Django content type system (allows permissions to be associated with models).
+#     'django.contrib.sessions',
+#     'django.contrib.messages',
+#     'django.contrib.staticfiles',
+#     'rest_framework',
+#     'corsheaders',
+# ]
+
+# MIDDLEWARE = [
+#     'corsheaders.middleware.CorsMiddleware',
+#     'django.middleware.security.SecurityMiddleware',
+#     'django.contrib.sessions.middleware.SessionMiddleware', #Manages sessions across requests
+#     'django.middleware.common.CommonMiddleware',
+#     'django.middleware.csrf.CsrfViewMiddleware',
+#     'django.contrib.messages.middleware.MessageMiddleware',
+#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+#     'django.contrib.auth.middleware.AuthenticationMiddleware',  #Associates users with requests using sessions.
+
+# ]
+#####################
 
 # Application definition
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -45,17 +125,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api',
+    'corsheaders',
 ]
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 
 ROOT_URLCONF = 'ChatbotAPI.urls'
 
